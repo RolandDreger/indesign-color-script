@@ -3,12 +3,12 @@
 //DESCRIPTION: Helps you to tackle color management  
 
 /*
-  + Color Script 1.0.9
+  + Color Script 1.0.10
   + Autor: Roland Dreger 
-  + Indesign Version: CS 6
+  + Indesign Version: CS 6+
   
   + Datum: 14. Juni 2015 
-	+ Letzte Ändererung: 3. November 2023
+	+ Letzte Ändererung: 5. Oktober 2024
   
   + Freies Script fuer private und kommerzielle Nutzung (Creativ Commons Lizenz: Roland Dreger, CC BY 3.0 AT). 
   + Verwendung auf eigene Gefahr.
