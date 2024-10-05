@@ -1,6 +1,8 @@
 ﻿# Color Script
 
-As the name suggests, the ‘Color Script’ script helps with colour management in Adobe InDesign.
+As the name suggests, the script helps with colour management in Adobe InDesign.
+
+<img width="1920" alt="color_script_ui" src="https://github.com/user-attachments/assets/2346baac-584b-4e15-b8fe-d031aafd5c6b">
 
 ## Usage
 
