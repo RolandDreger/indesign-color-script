@@ -174,10 +174,12 @@ function __showUI () {
             spacing = 2;
             var _engineLabel = add("statictext",undefined,localize(_global.engine));
             with(_engineLabel) {
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
             } // END statictext _engineLabel
             var _engine = add("statictext",undefined,"");
             with(_engine) {
               characters = 30;
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
             } // END statictext _engine
           } // END group _engineGroup  
           var _intentGroup = add("group");
@@ -185,21 +187,27 @@ function __showUI () {
             spacing = 2;
             var _intentLabel = add("statictext",undefined,localize(_global.intent));
             with(_intentLabel) {
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
             } // END statictext _intentLabel
             var _intent = add("statictext",undefined,"");
             with(_intent) {
               characters = 26;
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
             } // END statictext _intent
           } // END group _intentGroup
           var _blackCompGroup = add("group");
           with(_blackCompGroup) {
             spacing = 2;
             var _useBlackPointCompensationLabel = add("statictext",undefined,localize(_global.useBlackPointCompensation));
+						with(_useBlackPointCompensationLabel) {
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
+						} // END statictext _useBlackPointCompensationLabel
             with(_useBlackPointCompensationLabel) {
             } // END statictext _useBlackPointCompensationLabel
             var _useBlackPointCompensation = add("statictext",undefined,"");
             with(_useBlackPointCompensation) {
               characters = 4;
+							helpTip = localize(_global.applicationWidePreferencesHelpTip);
             } // END statictext _useBlackPointCompensation
           } // END group _blackCompGroup
         } // END panel _conversionOptionsPanel
@@ -3423,5 +3431,10 @@ function __defLocalizeStrings() {
 		en:"Color profile for the device to be simulated in the color proof settings.", 
     de:"Farbprofil für das zu simulierende Gerät in den Farbproof-Einstellungen." 
 	};
-         
+
+	_global.applicationWidePreferencesHelpTip = { 
+		en:"Application-wide preference: The script only changes preferences at document level.", 
+    de:"Voreinstellung der Anwendung: Das Skript ändert nur Voreinstellungen auf Dokumentebene." 
+	};
+	  
 } // END function __defLocalizeStrings
