@@ -27,7 +27,7 @@ if (app.documents.length > 0) {
   if (app.scriptPreferences.version >= 6) {
     app.doScript(__main, ScriptLanguage.JAVASCRIPT , [], UndoModes.ENTIRE_SCRIPT, "Color Script");  
   } else { 
-    main(); 
+    __main();
   }  
 } else { 
   var _noDocOpened = { 
@@ -1335,7 +1335,7 @@ function __showUI () {
   
   _ui.onClose = function() {
     if(app.documents.length > 0) {
-      _removeEventListenerFromAllDocs();
+      __removeEventListenerFromAllDocs();
     }
     _global = null;
   }
@@ -2777,28 +2777,47 @@ function __checkIfSelectionIsPDForAIAndDo(__function) {
  
 function __addEventListenerAfterSelectionChanged() {
 
-  var _numberOfEventListeners = app.activeDocument.eventListeners.length;   
+	var _doc = app.documents.firstItem();
+	if(!_doc.isValid) {
+		return;
+	}
+
+	var _eventListenerArray = _doc.eventListeners.everyItem().getElements();
+  var _numberOfEventListeners = _eventListenerArray.length;   
   
-  for(var e=_numberOfEventListeners-1;e>=0;e--) { 
-    if(app.activeDocument.eventListeners[e].eventType == "afterSelectionChanged" && app.activeDocument.eventListeners[e].handler.name == "__updateAfterSelectionChanged") {
-      app.activeDocument.eventListeners[e].remove();
+  for(var e = _numberOfEventListeners - 1; e>=0; e--) { 
+		var _eventListener = _eventListenerArray[e];
+		if(!_eventListener || !_eventListener.isValid) {
+			continue;
+		}
+    if(_eventListener.eventType == "afterSelectionChanged" && _eventListener.handler.name == "__updateAfterSelectionChanged") {
+      _eventListener.remove();
     }
   }
-  app.activeDocument.addEventListener("afterSelectionChanged", __updateAfterSelectionChanged); 
+
+  _doc.addEventListener("afterSelectionChanged", __updateAfterSelectionChanged); 
 } // END function __addEventListenerAfterSelectionChanged
  
  
-function _removeEventListenerFromAllDocs() { 
+function __removeEventListenerFromAllDocs() { 
+
+	var _docArray = app.documents.everyItem().getElements();
   
-  for(var d=app.documents.length-1;d>=0;d--) { 
-    var _numberOfEventListeners = app.documents[d].eventListeners.length;
-    for(var e=_numberOfEventListeners-1;e>=0;e--) { 
-      if(app.documents[d].eventListeners[e].eventType == "afterSelectionChanged" && app.documents[d].eventListeners[e].handler.name == "__updateAfterSelectionChanged") {
-        app.documents[d].eventListeners[e].remove();
+  for(var d = _docArray.length-1; d >= 0; d--) { 
+		var _doc = _docArray[d];
+    var _eventListenerArray = _doc.eventListeners.everyItem().getElements();
+  	var _numberOfEventListeners = _eventListenerArray.length;
+    for(var e = _numberOfEventListeners - 1; e >= 0; e--) { 
+			var _eventListener = _eventListenerArray[e];
+			if(!_eventListener || !_eventListener.isValid) {
+				continue;
+			}
+      if(_eventListener.eventType == "afterSelectionChanged" && _eventListener.handler.name == "__updateAfterSelectionChanged") {
+        _eventListener.remove();
       }
     }    
   }
-} // END function _removeEventListenerFromAllDocs
+} // END function __removeEventListenerFromAllDocs
  
  
  
